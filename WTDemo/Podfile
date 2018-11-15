@@ -3,6 +3,6 @@ inhibit_all_warnings!
 
 target "WTDemo" do
     #基础组件
-    pod 'WTBaseCore', :git => "https://github.com/aliang124/WTBaseCore.git"
+    pod 'WTBaseCore', :git => "https://github.com/jienliang000/WTBaseCore.git"
 end
 
