@@ -7,6 +7,8 @@
 //
 
 #import "QLCareViewController.h"
+#import "QLBusiness.h"
+
 @interface QLCareViewController ()
 @end
 
