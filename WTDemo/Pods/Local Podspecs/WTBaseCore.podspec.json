@@ -15,14 +15,8 @@
     "FDFullscreenPopGesture": [
       "~> 1.1"
     ],
-    "DZNEmptyDataSet": [
-      "~> 1.8.1"
-    ],
     "IQKeyboardManager": [
       "~> 5.0.7"
-    ],
-    "MJExtension": [
-      "~> 3.0.13"
     ]
   },
   "source": {
@@ -67,6 +61,10 @@
     {
       "name": "WTAppDelegate",
       "source_files": "WTBaseCore/WTAppDelegate/**/*.{h,m,c,mm}"
+    },
+    {
+      "name": "WTCustomNavBar",
+      "source_files": "WTBaseCore/WTCustomNavBar/**/*.{h,m,c,mm,png}"
     }
   ]
 }

@@ -26,7 +26,6 @@
 //CoreUI
 #import "UIButton+Block.h"
 #import "UIView+Category.h"
-#import "WTNavBar.h"
 #import "WTTextField.h"
 #import "WTCustomButton.h"
 
@@ -52,7 +51,8 @@
 #import "UINavigationController+FDFullscreenPopGesture.h"
 //EXT
 #import "UITextView+Placeholder.h"
-#import "MJExtension.h"
-#import "NSBundle+WTBaseCore.h"
+//WTCustomNavBar
+#import "WTCustomBarItem.h"
+#import "WTCustomNavBar.h"
 
 #endif

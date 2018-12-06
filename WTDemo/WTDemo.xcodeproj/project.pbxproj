@@ -79,8 +79,8 @@
 		50DADD022192879100DA8BFE /* QLCareModel */ = {
 			isa = PBXGroup;
 			children = (
-				50DADD032192879100DA8BFE /* QLCareViewController.m */,
 				50DADD042192879100DA8BFE /* QLCareViewController.h */,
+				50DADD032192879100DA8BFE /* QLCareViewController.m */,
 			);
 			name = QLCareModel;
 			path = ../../QLCareModel;
@@ -369,8 +369,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y5EQM97VAW;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/WTDemo/WTDemo.pch";
 				INFOPLIST_FILE = WTDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -387,8 +389,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y5EQM97VAW;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/WTDemo/WTDemo.pch";
 				INFOPLIST_FILE = WTDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

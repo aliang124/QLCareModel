@@ -9,10 +9,6 @@
 #ifndef WTBaseCore_WTDefine_h
 #define WTBaseCore_WTDefine_h
 /**
- *    @brief    状态栏高度.
- */
-#define WT_Height_StatusBar 20.f
-/**
  *    @brief    屏幕宽
  */
 #define WTScreenWidth [UIScreen mainScreen].bounds.size.width
@@ -24,14 +20,19 @@
  *     @brief     底部Tab高度.
  */
 #define WT_TabBar_Height ([[UIApplication sharedApplication] statusBarFrame].size.height>20?83:49)
+
 /**
- *     @brief     顶部导航栏高度.
+ *     @brief     状态栏区域高度，如果是iPhoneX加上刘海区域高度
  */
-#define WT_NavBar_Height (iPhoneX ? 88.0f : 64.0f)
+#define WT_Height_StatusBar (iPhoneX ? 44.0f : 20.0f)
 /**
- *     @brief     距离顶部的高度
+ *     @brief     实际操作title区域和按钮区域高度
  */
-#define WT_APP_TopHeight (iPhoneX ? 44.0f : 20.0f)
+#define WT_NavBar_Title_Height 44
+/**
+ *     @brief     总高度
+ */
+#define WT_NavBar_Height (WT_NavBar_Title_Height+WT_Height_StatusBar)
 /**
  *     @brief    线条高度
  */
@@ -44,7 +45,7 @@
 /**
  *     @brief     view默认背景色.
  */
-#define WT_Color_ViewBackGround  WTColorHex(0xf4f4f4)
+#define WT_Color_ViewBackGround  WTColorHex(0xf5f5f2)
 /**
  *     @brief     文本黑色字体颜色.
  */

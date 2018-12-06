@@ -9,7 +9,7 @@
 #import "WTViewController.h"
 #import "WTDefine.h"
 #import "UINavigationController+FDFullscreenPopGesture.h"
-#import "NSBundle+WTBaseCore.h"
+#import "WTCustomBarItem.h"
 
 @interface WTViewController ()
 
@@ -30,12 +30,12 @@
     
     WT(bself);
     //创建导航栏
-    navBar = [[WTNavBar alloc] init];
+    navBar = [[WTCustomNavBar alloc] init];
     [self.view addSubview:navBar];
     //返回按钮
-    WTBarItem *item = [[WTBarItem alloc] init];
+    WTCustomBarItem *item = [[WTCustomBarItem alloc] init];
     item.itemStyle = 1;
-    item.itemImage = [NSBundle getImageFromBoundle:@"back"];
+    item.itemImage = [UIImage imageNamed:@"WTBaseCore.bundle/back"];;
     item.imgSize = CGSizeMake(30, 30);
     item.onClick = ^(void) {
         [bself backBtnPress];
