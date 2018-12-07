@@ -15,4 +15,12 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/aliang124/QLCareModel.git", :tag => "#{s.version}" }
   s.source_files  = "QLCareModel/*.{h,m}"
 
+  s.subspec 'View' do |ss|
+  ss.source_files = 'QLCareModel/View/**/*.{h,m,c,mm}'
+  end
+
+  s.subspec 'Cell' do |ss|
+  ss.source_files = 'QLCareModel/Cell/**/*.{h,m,c,mm}'
+  end
+
 end

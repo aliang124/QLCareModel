@@ -32,6 +32,10 @@
     {
       "name": "Request",
       "source_files": "QLBusiness/Request/**/*.{h,m,c,mm}"
+    },
+    {
+      "name": "Controller",
+      "source_files": "QLBusiness/Controller/**/*.{h,m,c,mm}"
     }
   ]
 }

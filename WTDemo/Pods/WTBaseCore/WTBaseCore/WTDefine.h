@@ -24,15 +24,15 @@
 /**
  *     @brief     状态栏区域高度，如果是iPhoneX加上刘海区域高度
  */
-#define WT_Height_StatusBar (iPhoneX ? 44.0f : 20.0f)
+#define WT_Default_Height_StatusBar (iPhoneX ? 44.0f : 20.0f)
 /**
  *     @brief     实际操作title区域和按钮区域高度
  */
-#define WT_NavBar_Title_Height 44
+#define WT_Default_NavBar_Title_Height 44
 /**
  *     @brief     总高度
  */
-#define WT_NavBar_Height (WT_NavBar_Title_Height+WT_Height_StatusBar)
+#define WT_Default_NavBar_Height (WT_Default_NavBar_Title_Height+WT_Default_Height_StatusBar)
 /**
  *     @brief    线条高度
  */
@@ -45,7 +45,7 @@
 /**
  *     @brief     view默认背景色.
  */
-#define WT_Color_ViewBackGround  WTColorHex(0xf5f5f2)
+#define WT_Color_ViewBackGround  WTColorHex(0xf4f4f4)
 /**
  *     @brief     文本黑色字体颜色.
  */
