@@ -8,6 +8,8 @@
 
 #import "WTBaseCore.h"
 #import "QLBusiness.h"
-@interface QLCareViewController : QLFormViewController
+#import "QLCareBarView.h"
 
+@interface QLCareViewController : QLFormViewController
+@property (nonatomic,strong) QLCareBarView *barView;
 @end

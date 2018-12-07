@@ -18,6 +18,10 @@
     [super viewDidLoad];
     self.navBar.leftItemList = [NSArray array];
     [self setControllerTitle];
+    
+    _barView = [[QLCareBarView alloc] initWithFrame:CGRectMake(0, WT_NavBar_Height, WTScreenWidth, 44)];
+    _barView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:_barView];
 }
 
 - (void)setControllerTitle {
