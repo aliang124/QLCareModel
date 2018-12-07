@@ -98,10 +98,10 @@
 		50DADD022192879100DA8BFE /* QLCareModel */ = {
 			isa = PBXGroup;
 			children = (
-				50181A5221BA563600090951 /* Cell */,
-				50181A5321BA563600090951 /* View */,
 				50DADD042192879100DA8BFE /* QLCareViewController.h */,
 				50DADD032192879100DA8BFE /* QLCareViewController.m */,
+				50181A5221BA563600090951 /* Cell */,
+				50181A5321BA563600090951 /* View */,
 			);
 			name = QLCareModel;
 			path = ../../QLCareModel;

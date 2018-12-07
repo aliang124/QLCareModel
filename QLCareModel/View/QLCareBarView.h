@@ -7,11 +7,5 @@
 //
 
 #import <UIKit/UIKit.h>
-
-NS_ASSUME_NONNULL_BEGIN
-
-@interface QLCareBarView : UIView
-
+@interface QLCareBarView : UIButton
 @end
-
-NS_ASSUME_NONNULL_END
