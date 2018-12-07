@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		221AEC82A8DB30A6462C9440 /* libPods-WTDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A24F37922F2E1F5DE6CD53EC /* libPods-WTDemo.a */; };
 		50181A5621BA565200090951 /* QLCareBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50181A5521BA565200090951 /* QLCareBarView.m */; };
+		50181A5921BA65AC00090951 /* QLCareListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50181A5721BA65AC00090951 /* QLCareListCell.m */; };
 		50DADCE12192811A00DA8BFE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DADCE02192811A00DA8BFE /* AppDelegate.m */; };
 		50DADCE92192811B00DA8BFE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50DADCE82192811B00DA8BFE /* Assets.xcassets */; };
 		50DADCEC2192811B00DA8BFE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50DADCEA2192811B00DA8BFE /* LaunchScreen.storyboard */; };
@@ -19,6 +20,8 @@
 /* Begin PBXFileReference section */
 		50181A5421BA565200090951 /* QLCareBarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QLCareBarView.h; sourceTree = "<group>"; };
 		50181A5521BA565200090951 /* QLCareBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QLCareBarView.m; sourceTree = "<group>"; };
+		50181A5721BA65AC00090951 /* QLCareListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QLCareListCell.m; sourceTree = "<group>"; };
+		50181A5821BA65AC00090951 /* QLCareListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QLCareListCell.h; sourceTree = "<group>"; };
 		50DADCDC2192811A00DA8BFE /* WTDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WTDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50DADCDF2192811A00DA8BFE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		50DADCE02192811A00DA8BFE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -49,6 +52,8 @@
 		50181A5221BA563600090951 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				50181A5821BA65AC00090951 /* QLCareListCell.h */,
+				50181A5721BA65AC00090951 /* QLCareListCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -254,6 +259,7 @@
 			files = (
 				50DADCEF2192811B00DA8BFE /* main.m in Sources */,
 				50DADCE12192811A00DA8BFE /* AppDelegate.m in Sources */,
+				50181A5921BA65AC00090951 /* QLCareListCell.m in Sources */,
 				50181A5621BA565200090951 /* QLCareBarView.m in Sources */,
 				50DADD052192879100DA8BFE /* QLCareViewController.m in Sources */,
 			);

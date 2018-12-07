@@ -43,6 +43,10 @@
         UIImageView *arrowImg = [[UIImageView alloc] initWithFrame:CGRectMake(WTScreenWidth-5-20, (44-9)/2, 5, 9)];
         [arrowImg setImage:[UIImage imageNamed:@"arrowImg"]];
         [self addSubview:arrowImg];
+        
+        UIImageView *lineImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 44-WT_Line_Height, WTScreenWidth, WT_Line_Height)];
+        lineImg.backgroundColor = WT_Color_Line;
+        [self addSubview:lineImg];
     }
     return self;
 }
