@@ -41,7 +41,7 @@
         [self addSubview:countLab];
         
         UIImageView *arrowImg = [[UIImageView alloc] initWithFrame:CGRectMake(WTScreenWidth-5-20, (44-9)/2, 5, 9)];
-        arrowImg.backgroundColor = [UIColor redColor];
+        [arrowImg setImage:[UIImage imageNamed:@"arrowImg"]];
         [self addSubview:arrowImg];
     }
     return self;
