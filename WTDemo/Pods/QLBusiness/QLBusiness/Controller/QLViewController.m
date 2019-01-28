@@ -17,7 +17,6 @@
 @end
 
 @implementation QLViewController
-@synthesize navBar;
 
 - (void)viewDidLoad {
     [super viewDidLoad];

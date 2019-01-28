@@ -20,6 +20,8 @@
  *     @brief     底部Tab高度.
  */
 #define WT_TabBar_Height ([[UIApplication sharedApplication] statusBarFrame].size.height>20?83:49)
+#define WT_SafeArea_TOP (iPhoneX ? 44 : 0)
+#define WT_SafeArea_BOTTOM (iPhoneX ? 34 : 0)
 
 /**
  *     @brief     状态栏区域高度，如果是iPhoneX加上刘海区域高度

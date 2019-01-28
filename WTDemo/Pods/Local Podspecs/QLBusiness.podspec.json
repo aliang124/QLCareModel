@@ -11,11 +11,20 @@
     "ios": "8.0"
   },
   "requires_arc": true,
+  "dependencies": {
+    "MBProgressHUD": [
+
+    ],
+    "MJRefresh": [
+
+    ]
+  },
   "source": {
     "git": "https://github.com/aliang124/QLBusiness.git",
     "tag": "0.0.1"
   },
   "source_files": "QLBusiness/*.{h,m}",
+  "resources": "QLBusiness/Res/QLBusiness.bundle",
   "subspecs": [
     {
       "name": "Cell",
@@ -24,6 +33,10 @@
     {
       "name": "View",
       "source_files": "QLBusiness/View/**/*.{h,m,c,mm}"
+    },
+    {
+      "name": "Util",
+      "source_files": "QLBusiness/Util/**/*.{h,m,c,mm}"
     },
     {
       "name": "Model",
@@ -36,6 +49,14 @@
     {
       "name": "Controller",
       "source_files": "QLBusiness/Controller/**/*.{h,m,c,mm}"
+    },
+    {
+      "name": "AddressPicker",
+      "source_files": "QLBusiness/AddressPicker/**/*.{h,m,plist}"
+    },
+    {
+      "name": "Res",
+      "source_files": "QLBusiness/Res/**/*.{h,m}"
     }
   ]
 }

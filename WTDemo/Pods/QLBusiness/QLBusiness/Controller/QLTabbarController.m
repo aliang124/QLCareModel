@@ -11,6 +11,7 @@
 #import "WTCustomButton.h"
 #import "UIView+Category.h"
 #import "WTTabbarController.h"
+#import "QLDefine.h"
 @interface QLTabbarController ()
 {
     UIButton *_lastButton;
@@ -37,11 +38,10 @@
 
 //创建自定义tabBar
 - (void)_initTabbarView {
-    _tabBarView = [[UIView alloc] initWithFrame:CGRectMake(0, WTScreenHeight - WT_TabBar_Height, WTScreenWidth, WT_TabBar_Height)];
+    _tabBarView = [[UIView alloc] initWithFrame:CGRectMake(0, WTScreenHeight - QL_TabBar_HEIGHT, WTScreenWidth, QL_TabBar_HEIGHT)];
     _tabBarView.tag = 1111;
     _tabBarView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:_tabBarView];
-    
+    [self.view addSubview:_tabBarView];    
     NSMutableArray *controllers = [[NSMutableArray alloc] init];
     
     float width = WTScreenWidth/self.itemsArray.count;
@@ -50,7 +50,7 @@
         [controllers addObject:item.vc];
         
         WTCustomButton *button = [WTCustomButton buttonWithType:UIButtonTypeCustom withSpace:4];
-        button.frame = CGRectMake(i * width, 0, width, WT_TabBar_Height);
+        button.frame = CGRectMake(i * width, 0, width, QL_TabBar_HEIGHT-QL_SafeArea_BOTTOM);
         button.tag = 100+i;
         button.buttonStyle = WTCustomButtonImageTop;
         button.titleLabel.font = [UIFont systemFontOfSize:12];
