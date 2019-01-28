@@ -10,6 +10,8 @@
 #import "QLBusiness.h"
 #import "UIImageView+WebImage.h"
 #import "QLStarView.h"
+#import "QLListPictureView.h"
+#import "QLListDianZanCountView.h"
 
 @implementation QLCareListItem
 - (id)init{
@@ -38,6 +40,9 @@
     UILabel *scoreLab;
     //内容区域
     UILabel *descLab;
+    //图片区域
+    QLListPictureView *picView;
+    QLListDianZanCountView *zanView;
 }
 @end
 
@@ -86,7 +91,7 @@
     pingFenLab.textColor = QL_UserName_TitleColor_Black;
     [bgView addSubview:pingFenLab];
 
-    starView = [[QLStarView alloc] initWithOrgPoint:CGPointMake(pingFenLab.right, pingFenLab.top-2.5)];
+    starView = [[QLStarView alloc] initWithOrgPoint:CGPointMake(pingFenLab.right, pingFenLab.top-2)];
     [bgView addSubview:starView];
     
     scoreLab = [[UILabel alloc] initWithFrame:CGRectMake(starView.right+11, tipLab.bottom+8, 33, 9)];
@@ -101,6 +106,12 @@
     descLab.textColor = QL_UserName_TitleColor_Black;
     [bgView addSubview:descLab];
 
+    //图片区域
+    picView = [[QLListPictureView alloc] initWithFrame:CGRectMake(12, descLab.bottom+8, bgView.width-12-12, 88)];
+    [bgView addSubview:picView];
+    //点赞数量区域
+    zanView = [[QLListDianZanCountView alloc] initWithFrame:CGRectMake(0, picView.bottom+7, bgView.width, 10)];
+    [bgView addSubview:zanView];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated{}
@@ -114,16 +125,24 @@
     [userIcon setWebImageWithUrl:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547976453468&di=0730fb64aadc80b0f2490a430f51aebb&imgtype=0&src=http%3A%2F%2Fimg5.duitang.com%2Fuploads%2Fitem%2F201105%2F31%2F20110531094303_d5JZB.jpg" placeHolder:nil];
     //第二行
     tipLab.text = @"获得新用户的评价";
+    float top = tipLab.bottom;
     //是否是商家
-    if (1) {
-        
+    if (0) {
+        top = top + 84;
     }
     //评分
+    pingFenLab.top = top+8;
+    starView.top = pingFenLab.top-1.5;
+    scoreLab.top = pingFenLab.top;
+    
     starView.starCount = 3;
     scoreLab.text = @"3.7";
     //desc
+    descLab.top = pingFenLab.bottom+11;
     descLab.text = @"店里很卫生，安全设施很好，吃的很放心味道也挺好，菜都很精致。";
     [descLab sizeToFit];
-    
+    //图片
+    picView.top = descLab.bottom+8;
+    zanView.top = picView.bottom+7;
 }
 @end
