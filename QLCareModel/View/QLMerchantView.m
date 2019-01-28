@@ -32,7 +32,6 @@
         [self addSubview:bgView];
         
         iconImg = [[UIImageView alloc] initWithFrame:CGRectMake(8, 8, 80, 60)];
-        iconImg.backgroundColor = [UIColor redColor];
         [bgView addSubview:iconImg];
         
         nameLab = [[UILabel alloc] initWithFrame:CGRectMake(iconImg.right+10, 15, bgView.width-iconImg.right-10-10, 13)];
@@ -59,6 +58,7 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     nameLab.text = @"Lunaluz露娜家亲子餐厅";
+    [iconImg setWebImageWithUrl:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547976453468&di=0730fb64aadc80b0f2490a430f51aebb&imgtype=0&src=http%3A%2F%2Fimg5.duitang.com%2Fuploads%2Fitem%2F201105%2F31%2F20110531094303_d5JZB.jpg" placeHolder:nil];
     //下面的布局
     tagLab.text = @"西餐";
     [tagLab sizeToFit];
