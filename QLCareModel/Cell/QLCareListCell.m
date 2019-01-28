@@ -12,6 +12,7 @@
 #import "QLStarView.h"
 #import "QLListPictureView.h"
 #import "QLListDianZanCountView.h"
+#import "QLMerchantView.h"
 
 @implementation QLCareListItem
 - (id)init{
@@ -34,6 +35,8 @@
 
     //第二行
     UILabel *tipLab;
+    //商家
+    QLMerchantView *merchantView;
     //评分
     UILabel *pingFenLab;
     QLStarView *starView;
@@ -42,6 +45,7 @@
     UILabel *descLab;
     //图片区域
     QLListPictureView *picView;
+    //点赞数量
     QLListDianZanCountView *zanView;
 }
 @end
@@ -83,7 +87,9 @@
     tipLab.font = WTFontSys(10);
     tipLab.textColor = QL_DescColor_Gray;
     [bgView addSubview:tipLab];
-    
+    //商家
+    merchantView = [[QLMerchantView alloc] initWithFrame:CGRectMake(0, tipLab.bottom+8, bgView.width, 76)];
+    [bgView addSubview:merchantView];
     //评分
     pingFenLab = [[UILabel alloc] initWithFrame:CGRectMake(12, tipLab.bottom+8, 33, 9)];
     pingFenLab.text = @"评分：";
@@ -126,10 +132,9 @@
     //第二行
     tipLab.text = @"获得新用户的评价";
     float top = tipLab.bottom;
-    //是否是商家
-    if (0) {
-        top = top + 84;
-    }
+    //商家
+    merchantView.top = tipLab.bottom+8;
+    top = top + 84;
     //评分
     pingFenLab.top = top+8;
     starView.top = pingFenLab.top-1.5;
@@ -144,5 +149,8 @@
     //图片
     picView.top = descLab.bottom+8;
     zanView.top = picView.bottom+7;
+    
+    bgView.height = zanView.bottom+15;
+    self.item.cellHeight = bgView.height;
 }
 @end
