@@ -7,21 +7,8 @@
 //
 
 #import "QLHomeViewController.h"
-#import "QLHomeBannerCell.h"
-#import "WTBaseCore.h"
-#import "QLBusiness.h"
-#import <CTMediator.h>
-#import "QLHomeNetWorkingUtil.h"
-#import "QLHomeCategoryCell.h"
-#import "QLHomeHotTagCell.h"
-#import "QLHomeMerchantListCell.h"
-#import "QLHomeTieZiCell.h"
 
 @interface QLHomeViewController ()
-@property (nonatomic,copy) NSArray *categoryArray;
-@property (nonatomic,copy) NSArray *ageArray;
-@property (nonatomic,copy) NSArray *businessArray;
-@property (nonatomic,strong) NSMutableArray *articleArray;
 @end
 
 @implementation QLHomeViewController
@@ -33,89 +20,106 @@
     self.formManager[@"QLHomeHotTagItem"] = @"QLHomeHotTagCell";
     self.formManager[@"QLHomeMerchantListItem"] = @"QLHomeMerchantListCell";
     self.formManager[@"QLHomeTieZiItem"] = @"QLHomeTieZiCell";
-    self.articleArray = [[NSMutableArray alloc] init];
-    
+    self.subjectArray = [[NSMutableArray alloc] init];
+    self.bannerArray = [[NSMutableArray alloc] init];
     self.formTable.height = WTScreenHeight-WT_NavBar_Height-WT_TabBar_Height;
-
     self.navBar.leftItemList = [NSArray array];
-    [self setControllerTitle];
     
-    WTCustomBarItem *itRight = [[WTCustomBarItem alloc] init];
-    itRight.itemStyle = 0;
-    itRight.itemTitle = @"登录";
-    itRight.itemTextColor = QL_NavBar_TitleColor_Black;
-    itRight.itemTextFont = [UIFont systemFontOfSize:16];
-    itRight.onClick = ^{
-        UIViewController *vc = [[CTMediator sharedInstance] performTarget:@"QLLoginModel" action:@"loginVC" params:nil shouldCacheTarget:NO];
-        [self.navigationController presentViewController:[[UINavigationController alloc] initWithRootViewController:vc] animated:YES completion:nil];
+    WT(weakSelf);
+    WTCustomBarItem *itSearchBar = [[WTCustomBarItem alloc] init];
+    itSearchBar.itemStyle = 1;
+    itSearchBar.imgSize = CGSizeMake(32, 32);
+    itSearchBar.onClick = ^{
+        [weakSelf goSearchViewController];
     };
-    self.navBar.rightItemList = [NSArray arrayWithObject:itRight];
+    itSearchBar.itemImage = [UIImage imageNamed:@"searchBar"];
+
+    WTCustomBarItem *itMsgBar = [[WTCustomBarItem alloc] init];
+    itMsgBar.itemStyle = 1;
+    itMsgBar.imgSize = CGSizeMake(32, 32);
+    itMsgBar.itemImage = [UIImage imageNamed:@"messageBar"];
+    itMsgBar.onClick = ^{
+        if (![[QLLoginInfo sharedInstance] isLogin]) {
+            UIViewController *vc = [[CTMediator sharedInstance] performTarget:@"QLLoginModel" action:@"loginVC" params:nil shouldCacheTarget:NO];
+            [self.navigationController presentViewController:[[UINavigationController alloc] initWithRootViewController:vc] animated:YES completion:nil];
+            return;
+        }
+        UIViewController *vc = [[CTMediator sharedInstance] performTarget:@"QLMineModel" action:@"messageVC" params:nil shouldCacheTarget:NO];
+        [self.navigationController pushViewController:vc animated:YES];
+    };
+    self.navBar.rightItemList = [NSArray arrayWithObjects:itMsgBar,itSearchBar, nil];
     
+    [WTLoadingView1 showLoadingInView:self.view top:WT_NavBar_Height];
     [self getHomeData];
+    self.formTable.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self getHomeData];
+    }];
+}
+
+- (void)createAgeView {
+    if (_ageView==nil) {
+        _ageView = [[UIButton alloc] initWithFrame:CGRectMake(12,((WT_NavBar_Title_Height-36)/2)+WT_Height_StatusBar, 100, 36)];
+        _ageView.layer.cornerRadius = 18;
+        _ageView.layer.masksToBounds = YES;
+        _ageView.backgroundColor = WTColorHex(0x947d00);
+        [_ageView addTarget:self action:@selector(ageBtnPress) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:_ageView];
+        
+        UIImageView *arrowImg = [[UIImageView alloc] initWithFrame:CGRectMake(73, 11, 16, 16)];
+        [arrowImg setImage:[UIImage imageNamed:@"home_downArrow"]];
+        [self.ageView addSubview:arrowImg];
+        
+        _ageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, 73, 16)];
+        _ageLabel.font = WTFontSys(18);
+        _ageLabel.textColor = WTColorHex(0x171714);
+        _ageLabel.text = @"3~6岁";
+        _ageLabel.textAlignment = NSTextAlignmentCenter;
+        [self.ageView addSubview:_ageLabel];
+    }
 }
 
 - (void)getHomeData {
     [QLHomeNetWorkingUtil getHomeIndex:nil successHandler:^(id json) {
+        [WTLoadingView1 hideAllLoadingForView:self.view];
+        [self.formTable.mj_header endRefreshing];
         self.ageArray = json[@"ageData"];
         self.categoryArray = json[@"categoryData"];
         self.businessArray = json[@"businessData"];
-        id articleData = json[@"articleData"];
-        if ([articleData isKindOfClass:[NSDictionary class]]) {
-            [self.articleArray addObject:articleData];
-        } else if ([articleData isKindOfClass:[NSArray class]]) {
-            [self.articleArray addObjectsFromArray:articleData];
+        //帖子数组
+        [self.subjectArray removeAllObjects];
+        id subjectData = json[@"subjectData"];
+        if ([subjectData isKindOfClass:[NSDictionary class]]) {
+            [self.subjectArray addObject:subjectData];
+        } else if ([subjectData isKindOfClass:[NSArray class]]) {
+            [self.subjectArray addObjectsFromArray:subjectData];
+        }
+        //顶部banner
+        [self.bannerArray removeAllObjects];
+        NSArray *bArray = json[@"bannerData"];
+        if (bArray && bArray.count>0) {
+            [self.bannerArray addObjectsFromArray:bArray];
         }
         [self initForm];
+        [self createAgeView];
     } failHandler:^(NSString *message) {
+        [self.formTable.mj_header endRefreshing];
+        [WTLoadingView1 hideAllLoadingForView:self.view];
+        [WTLoadFailView showFailInView:self.view top:WT_NavBar_Height retryPress:^{
+            [self getHomeData];
+        }];
     }];
-}
-
-- (void)setControllerTitle {
-    self.navBar.title = @"首页";
 }
 
 - (void)initForm {
     WT(weakSelf);
-    
     NSMutableArray *sectionArray = [NSMutableArray array];
     RETableViewSection *section0 = [RETableViewSection section];
     
     QLHomeBannerItem *it = [[QLHomeBannerItem alloc] init];
-    it.datas = [NSArray arrayWithObjects:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547976453468&di=0730fb64aadc80b0f2490a430f51aebb&imgtype=0&src=http%3A%2F%2Fimg5.duitang.com%2Fuploads%2Fitem%2F201105%2F31%2F20110531094303_d5JZB.jpg",@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547976453465&di=8d62405b2626eb79a8b3ca40ae5bbfe6&imgtype=0&src=http%3A%2F%2Fs16.sinaimg.cn%2Fmw690%2F006bYgeozy7pHERVUC3df%26690",@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547976453464&di=0b41a9f182baf71c4993b63874cbe179&imgtype=0&src=http%3A%2F%2Fs9.sinaimg.cn%2Fmw690%2F006bYgeozy7pHERNHmg18%26690",@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547976453462&di=b3aeda0529188a8aacddc751c6cd06b6&imgtype=0&src=http%3A%2F%2Fs11.sinaimg.cn%2Fmw690%2F006bYgeozy7pHES81p87a%26690", nil];
+    it.datas = self.bannerArray;
     [section0 addItem:it];
-    
-    NSMutableArray *categoryData = [[NSMutableArray alloc] init];
-    for (int i = 0; i < 8; i++) {
-        NSMutableDictionary *ddd = [[NSMutableDictionary alloc] init];
-        if (i==0) {
-            [ddd setObject:@"meishi" forKey:@"icon"];
-            [ddd setObject:@"美食餐饮" forKey:@"title"];
-        } else if (i==1) {
-            [ddd setObject:@"sheying" forKey:@"icon"];
-            [ddd setObject:@"孕妇摄影" forKey:@"title"];
-        } else if (i==2) {
-            [ddd setObject:@"gouwu" forKey:@"icon"];
-            [ddd setObject:@"母婴购物" forKey:@"title"];
-        } else if (i==3) {
-            [ddd setObject:@"yuezi" forKey:@"icon"];
-            [ddd setObject:@"月子会所" forKey:@"title"];
-        } else if (i==4) {
-            [ddd setObject:@"huli" forKey:@"icon"];
-            [ddd setObject:@"月子护理" forKey:@"title"];
-        } else if (i==5) {
-            [ddd setObject:@"taijiao" forKey:@"icon"];
-            [ddd setObject:@"胎教中心" forKey:@"title"];
-        } else if (i==6) {
-            [ddd setObject:@"yiyuan" forKey:@"icon"];
-            [ddd setObject:@"妇幼医院" forKey:@"title"];
-        } else if (i==7) {
-            [ddd setObject:@"quanbu" forKey:@"icon"];
-            [ddd setObject:@"全部分类" forKey:@"title"];
-        }
-        [categoryData addObject:ddd];
-    }
     QLHomeCategoryItem *itCategory = [[QLHomeCategoryItem alloc] init];
-    itCategory.datas = categoryData;
+    itCategory.datas = self.categoryArray;
     itCategory.iconPressHandler = ^(id info) {
         UIViewController *vc = [[CTMediator sharedInstance] performTarget:@"QLMerchantModel" action:@"merchantListVC" params:nil shouldCacheTarget:NO];
         [weakSelf.navigationController pushViewController:vc animated:YES];
@@ -137,11 +141,10 @@
         [section0 addItem:itMerchant];
     }
     
-    for (int i = 0; i < self.articleArray.count; i++) {
-        NSDictionary *dic = self.articleArray[i];
+    for (int i = 0; i < self.subjectArray.count; i++) {
+        NSDictionary *dic = self.subjectArray[i];
         QLHomeTieZiItem *itTie = [[QLHomeTieZiItem alloc] init];
         itTie.userInfo = dic;
-        itTie.titleText = [WTUtil strRelay:dic[@"title"]];
         itTie.selectionHandler = ^(QLHomeTieZiItem *item) {
             UIViewController *vc = [[CTMediator sharedInstance] performTarget:@"QLTieBaModel" action:@"tieBaDetailVC" params:item.userInfo shouldCacheTarget:NO];
             [weakSelf.navigationController pushViewController:vc animated:YES];
@@ -153,5 +156,25 @@
     [self.formManager replaceSectionsWithSectionsFromArray:sectionArray];
     
     [self.formTable reloadData];
+}
+
+- (void)goSearchViewController {
+    QLSearchViewController *vc = [[QLSearchViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)ageBtnPress {
+    NSMutableArray *ar = [NSMutableArray array];
+    for (int i = 0; i < self.ageArray.count; i++) {
+        [ar addObject:[WTUtil strRelay:self.ageArray[i][@"name"]]];
+    }
+    [YBPopupMenu showAtPoint:CGPointMake(self.ageView.centerX, self.ageView.bottom) titles:ar icons:nil menuWidth:110 otherSettings:^(YBPopupMenu *popupMenu) {
+        popupMenu.delegate = self;
+    }];
+}
+
+- (void)ybPopupMenu:(YBPopupMenu *)ybPopupMenu didSelectedAtIndex:(NSInteger)index {
+    NSDictionary *dic = self.ageArray[index];
+    self.ageLabel.text = [WTUtil strRelay:dic[@"name"]];
 }
 @end

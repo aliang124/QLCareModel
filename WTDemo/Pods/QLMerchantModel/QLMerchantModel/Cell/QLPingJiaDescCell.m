@@ -12,7 +12,7 @@
 @implementation QLPingJiaDescItem
 - (id)init{
     if (self = [super init]) {
-        self.cellHeight = 0.1;
+        self.cellHeight = 1;
     }
     return self;
 }

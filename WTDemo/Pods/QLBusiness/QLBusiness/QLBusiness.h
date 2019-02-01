@@ -19,6 +19,7 @@
 #import "QLDropDownMenu.h"
 #import "QLMBProgressHUDUtil.h"
 #import "QLCountDownButton.h"
+#import "QLVertcalLabel.h"
 
 #import "QLLoginInfo.h"
 
@@ -26,5 +27,4 @@
 #import "QLFormViewController.h"
 #import "QLTabbarController.h"
 #import "QLGuideViewController.h"
-
 #endif

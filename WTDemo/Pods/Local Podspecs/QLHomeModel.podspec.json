@@ -24,6 +24,10 @@
     {
       "name": "NetWorking",
       "source_files": "QLHomeModel/NetWorking/**/*.{h,m,c,mm}"
+    },
+    {
+      "name": "View",
+      "source_files": "QLHomeModel/View/**/*.{h,m,c,mm}"
     }
   ]
 }
