@@ -1,1 +1,0 @@
-../../../QLADLaunchModel/QLADLaunchModel/TYLaunchAnimationProtocol.h

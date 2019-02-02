@@ -1,1 +1,0 @@
-../../../QLMineModel/QLMineModel/Setting/QLSettingViewController.h

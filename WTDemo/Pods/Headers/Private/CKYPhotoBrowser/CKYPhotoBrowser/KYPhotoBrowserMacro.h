@@ -1,1 +1,0 @@
-../../../../CKYPhotoBrowser/KYPhotoBrowser/PhotoBrowser/KYPhotoBrowserMacro.h

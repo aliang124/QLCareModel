@@ -1,1 +1,0 @@
-../../../WTBaseCore/WTBaseCore/WTAppDelegate/WTAppDelegate.h

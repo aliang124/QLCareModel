@@ -1,1 +1,0 @@
-../../../QLMineModel/QLMineModel/UserInfo/QLNickNameViewController.h

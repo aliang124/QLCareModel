@@ -1,1 +1,0 @@
-../../../QLMineModel/QLMineModel/Funs/QLFunsViewController.h

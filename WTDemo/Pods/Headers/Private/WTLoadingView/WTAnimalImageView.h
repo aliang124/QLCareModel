@@ -1,1 +1,0 @@
-../../../WTLoadingView/WTLoadingView/WTAnimalImageView.h
