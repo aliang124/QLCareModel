@@ -6,12 +6,10 @@
 //  Copyright © 2019年 计恩良. All rights reserved.
 //
 
-#import "QLViewController.h"
+#import "WTBaseCore.h"
+#import "QLBusiness.h"
+#import "WTTabPagerController.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
-@interface QLSearchViewController : QLViewController
+@interface QLSearchViewController : WTTabPagerController
 
 @end
-
-NS_ASSUME_NONNULL_END

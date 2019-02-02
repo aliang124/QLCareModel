@@ -1,0 +1,1 @@
+../../../QLHomeModel/QLHomeModel/Cell/QLSearchHotCell.h
