@@ -68,7 +68,7 @@
         self.isFromRefresh = YES;
         [self getData];
     }];
-    [WTLoadingView1 showLoadingInView:self.view top:self.formTable.top];
+    [WTLoadingView1 showLoadingInView:self.view top:self.barView.top];
     [self getData];
 }
 
@@ -94,9 +94,11 @@
         self.isFromRefresh = NO;
     } failHandler:^(NSString *message) {
         [self.formTable.mj_header endRefreshing];
+        [WTLoadingView1 hideAllLoadingForView:self.view];
         if (self.isFromRefresh) {
-            [WTLoadFailView showFailInView:self.view top:self.formTable.top retryPress:^{
-                [WTLoadingView1 showLoadingInView:self.view top:self.formTable.top];
+            [WTLoadFailView showFailInView:self.view top:self.barView.top retryPress:^{
+                [WTLoadingView1 showLoadingInView:self.view top:self.barView.top];
+                self.isFromRefresh = YES;
                 [self getData];
             }];
         }
