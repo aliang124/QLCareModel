@@ -10,6 +10,7 @@
 		221AEC82A8DB30A6462C9440 /* libPods-WTDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A24F37922F2E1F5DE6CD53EC /* libPods-WTDemo.a */; };
 		50181A5621BA565200090951 /* QLCareBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50181A5521BA565200090951 /* QLCareBarView.m */; };
 		50181A5921BA65AC00090951 /* QLCareListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50181A5721BA65AC00090951 /* QLCareListCell.m */; };
+		505796BA2206AC4E008044DF /* QLCareNetWorkingUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 505796B92206AC4E008044DF /* QLCareNetWorkingUtil.m */; };
 		505DB7472205DAE30088F9C5 /* QLCareHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 505DB7462205DAE30088F9C5 /* QLCareHeadCell.m */; };
 		505DB74A2205DD4A0088F9C5 /* QLCareTieZiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 505DB7492205DD4A0088F9C5 /* QLCareTieZiCell.m */; };
 		505DB74D2205E4960088F9C5 /* UIView+LSCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 505DB74C2205E4960088F9C5 /* UIView+LSCore.m */; };
@@ -30,6 +31,8 @@
 		50181A5521BA565200090951 /* QLCareBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QLCareBarView.m; sourceTree = "<group>"; };
 		50181A5721BA65AC00090951 /* QLCareListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QLCareListCell.m; sourceTree = "<group>"; };
 		50181A5821BA65AC00090951 /* QLCareListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QLCareListCell.h; sourceTree = "<group>"; };
+		505796B82206AC4E008044DF /* QLCareNetWorkingUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QLCareNetWorkingUtil.h; sourceTree = "<group>"; };
+		505796B92206AC4E008044DF /* QLCareNetWorkingUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QLCareNetWorkingUtil.m; sourceTree = "<group>"; };
 		505DB7452205DAE30088F9C5 /* QLCareHeadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QLCareHeadCell.h; sourceTree = "<group>"; };
 		505DB7462205DAE30088F9C5 /* QLCareHeadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QLCareHeadCell.m; sourceTree = "<group>"; };
 		505DB7482205DD4A0088F9C5 /* QLCareTieZiCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QLCareTieZiCell.h; sourceTree = "<group>"; };
@@ -143,6 +146,8 @@
 		50DADD022192879100DA8BFE /* QLCareModel */ = {
 			isa = PBXGroup;
 			children = (
+				505796B82206AC4E008044DF /* QLCareNetWorkingUtil.h */,
+				505796B92206AC4E008044DF /* QLCareNetWorkingUtil.m */,
 				50DADD042192879100DA8BFE /* QLCareViewController.h */,
 				50DADD032192879100DA8BFE /* QLCareViewController.m */,
 				50181A5221BA563600090951 /* Cell */,
@@ -316,6 +321,7 @@
 				505FE6EB21FF4543008B8FD6 /* QLMerchantView.m in Sources */,
 				505DB7472205DAE30088F9C5 /* QLCareHeadCell.m in Sources */,
 				505FE6E821FF3E5B008B8FD6 /* QLListDianZanCountView.m in Sources */,
+				505796BA2206AC4E008044DF /* QLCareNetWorkingUtil.m in Sources */,
 				50DADD052192879100DA8BFE /* QLCareViewController.m in Sources */,
 				505DB74D2205E4960088F9C5 /* UIView+LSCore.m in Sources */,
 			);

@@ -233,19 +233,19 @@ CHECKOUT OPTIONS:
     :commit: e47e9cfa770fe30ef545b82198b71fb602923093
     :git: https://github.com/aliang124/QLBusiness.git
   QLHomeModel:
-    :commit: 809ee2260ee4deb0d27bf350e82409f5a4085267
+    :commit: eded800c8aae526e65979e1d6a6a846bfb884c6f
     :git: https://github.com/aliang124/QLHomeModel.git
   QLLoginModel:
     :commit: 3bf589f808b95d0dcdd5c734c1305896552d34ff
     :git: https://github.com/aliang124/QLLoginModel.git
   QLMerchantModel:
-    :commit: 610036c61049f63befa148172c69b7034ff29c84
+    :commit: e8700519e23d9ffadb96922482ed136e3d6c3e91
     :git: https://github.com/aliang124/QLMerchantModel.git
   QLMineModel:
-    :commit: 8379a06595737d6fc61c7f32fc5cb13cd87ab326
+    :commit: 6b313b92c41c90f25f7ab6560fe6ffd91cf7fde5
     :git: https://github.com/aliang124/QLMineModel.git
   QLTieBaModel:
-    :commit: 78367a937b9fe3a4b2d6a3c5f9a0db3a151a3bbc
+    :commit: 132d29aeab14073d3489c45d84bdcbf46735dab2
     :git: https://github.com/aliang124/QLTieBaModel.git
   WTBaseCore:
     :commit: e3e88dc02154d1c84c12ac5fe02117479e1a09ae
@@ -269,7 +269,7 @@ CHECKOUT OPTIONS:
     :commit: 01251aa583b0ef238e03b59499b28c54b8bb5245
     :git: https://github.com/jienliang000/WTPhotoBrowser.git
   WTWebImage:
-    :commit: dfd91514f3b46329c95c03802b55340d13308a87
+    :commit: 8b9164b9b65377d412da4db92efeb23db5dc25c9
     :git: https://github.com/jienliang000/WTWebImage.git
 
 SPEC CHECKSUMS:

@@ -11,6 +11,8 @@
 #define QL_NetWorking_TieBaList @"/subject/record"
 //帖子详情
 #define QL_NetWorking_TieBaDetail @"/subject/detail"
+//发帖
+#define QL_NetWorking_ConfirmSubject @"/reply/confirm-subject"
 
 #import "QLTieBaNetWork.h"
 #import "WTBaseCore.h"
@@ -52,4 +54,18 @@
         }
     }];
 }
+
++ (void)confirmSubject:(NSDictionary *)param successHandler:(void (^)(id json))successHandler failHandler:(void (^)(NSString *message))failHandler {
+    [QLNetWorkingUtil postDataWithHost:QL_Net_Host Path:QL_NetWorking_ConfirmSubject Param:param success:^(id json) {
+        if (successHandler) {
+            successHandler(json);
+        }
+    } fail:^(NSString *message) {
+        if (failHandler) {
+            failHandler(message);
+        }
+    }];
+}
+
+
 @end

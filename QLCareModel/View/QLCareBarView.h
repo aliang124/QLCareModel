@@ -12,4 +12,5 @@
 #import "UIImageView+WebImage.h"
 
 @interface QLCareBarView : UIButton
+@property (nonatomic,copy) NSString *total;
 @end

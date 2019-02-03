@@ -11,6 +11,8 @@
 #import "WTBaseCore.h"
 #import "QLBusiness.h"
 #import "QLTieBaNetWork.h"
+#import "QLFaTieCategoryController.h"
+#import <CTMediator.h>
 
 @interface QLTieBaViewController ()<WTTabPagerControllerDataSource,WTTabPagerControllerDelegate>
 @property (nonatomic, strong) NSMutableArray *catogeryList;
@@ -27,20 +29,31 @@
     
     WTCustomBarItem *searchIt = [[WTCustomBarItem alloc] init];
     searchIt.itemStyle = 1;
-    searchIt.itemImage = [UIImage imageNamed:@"sousu"];
-    searchIt.imgSize = CGSizeMake(23, 23);
+    searchIt.itemImage = [UIImage imageNamed:@"searchBar"];
+    searchIt.imgSize = CGSizeMake(32, 32);
     searchIt.onClick = ^(void) {
+        UIViewController *vc = [[CTMediator sharedInstance] performTarget:@"QLHomeModel" action:@"searchVC" params:nil shouldCacheTarget:NO];
+        [self.navigationController pushViewController:vc animated:YES];
     };
     
     WTCustomBarItem *msgIt = [[WTCustomBarItem alloc] init];
     msgIt.itemStyle = 1;
-    msgIt.itemImage = [UIImage imageNamed:@"xiaoxi"];
-    msgIt.imgSize = CGSizeMake(23, 23);
+    msgIt.itemImage = [UIImage imageNamed:@"messageBar"];
+    msgIt.imgSize = CGSizeMake(32, 32);
     msgIt.onClick = ^(void) {
+        UIViewController *vc = [[CTMediator sharedInstance] performTarget:@"QLMineModel" action:@"messageVC" params:nil shouldCacheTarget:NO];
+        [self.navigationController pushViewController:vc animated:YES];
     };
     self.navBar.rightItemList = [NSArray arrayWithObjects:msgIt,searchIt, nil];
     [self.navBar setNeedsLayout];
     
+    
+    UIButton *addBtn = [[UIButton alloc] initWithFrame:CGRectMake(WTScreenWidth-8-48, WTScreenHeight-QL_TabBar_HEIGHT-10-48, 48, 48)];
+    [addBtn setImage:[UIImage imageNamed:@"faTie"] forState:UIControlStateNormal];
+    [addBtn setImage:[UIImage imageNamed:@"faTie_H"] forState:UIControlStateHighlighted];
+    [addBtn addTarget:self action:@selector(addTieZi) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:addBtn];
+
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     [param setObject:@"1000" forKey:@"pageSize"];
     [param setObject:@"1" forKey:@"page"];
@@ -93,4 +106,9 @@
     return title;
 }
 
+- (void)addTieZi {
+    QLFaTieCategoryController *tie = [[QLFaTieCategoryController alloc] init];
+    tie.catogeryList = self.catogeryList;
+    [self.navigationController pushViewController:tie animated:YES];
+}
 @end

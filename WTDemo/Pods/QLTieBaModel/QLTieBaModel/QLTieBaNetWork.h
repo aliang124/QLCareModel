@@ -19,4 +19,7 @@
 /*  获取贴吧详情
  */
 + (void)getTieBaDetail:(NSDictionary *)param successHandler:(void (^)(id json))successHandler failHandler:(void (^)(NSString *message))failHandler;
+/*  发布贴吧
+ */
++ (void)confirmSubject:(NSDictionary *)param successHandler:(void (^)(id json))successHandler failHandler:(void (^)(NSString *message))failHandler;
 @end

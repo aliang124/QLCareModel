@@ -14,8 +14,12 @@
 #import "QLCareCornerCell.h"
 #import "QLCareDescCell.h"
 #import <CTMediator.h>
+#import "QLCareNetWorkingUtil.h"
+#import "WTLoadFailEmpty.h"
+#import <MJRefresh.h>
 
 @interface QLCareViewController ()
+@property (nonatomic,assign) BOOL isFromRefresh;
 @end
 
 @implementation QLCareViewController
@@ -24,6 +28,8 @@
     [super viewDidLoad];
     self.navBar.leftItemList = [NSArray array];
     self.navBar.title = @"关注";
+    _isFromRefresh = YES;
+    _listArray = [[NSMutableArray alloc] init];
 
     _barView = [[QLCareBarView alloc] initWithFrame:CGRectMake(0, WT_NavBar_Height, WTScreenWidth, 44)];
     _barView.backgroundColor = [UIColor whiteColor];
@@ -57,7 +63,45 @@
     };
     self.navBar.rightItemList = [NSArray arrayWithObjects:itMsgBar,itSearchBar, nil];
     
-    [self initForm];
+    self.formTable.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        self.pageIndex = 1;
+        self.isFromRefresh = YES;
+        [self getData];
+    }];
+    [WTLoadingView1 showLoadingInView:self.view top:self.formTable.top];
+    [self getData];
+}
+
+- (void)getData {
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setObject:[NSNumber numberWithInt:self.pageIndex] forKey:@"page"];
+    [dic setObject:@"10" forKey:@"pageSize"];
+    [QLCareNetWorkingUtil getFlowIndex:dic successHandler:^(id json) {
+        [WTLoadingView1 hideAllLoadingForView:self.view];
+        [self.formTable.mj_header endRefreshing];
+        self.barView.total = json[@"total"];
+        [self.barView setNeedsLayout];
+        
+        self.totalPage = [[WTUtil strRelay:json[@"count"]] intValue];
+        if (self.isFromRefresh) {
+            [self.listArray removeAllObjects];
+        }
+        NSArray *ar = json[@"followData"];
+        if (ar && [ar isKindOfClass:[NSArray class]]) {
+            [self.listArray addObjectsFromArray:ar];
+        }
+        [self initForm];
+        self.isFromRefresh = NO;
+    } failHandler:^(NSString *message) {
+        [self.formTable.mj_header endRefreshing];
+        if (self.isFromRefresh) {
+            [WTLoadFailView showFailInView:self.view top:self.formTable.top retryPress:^{
+                [WTLoadingView1 showLoadingInView:self.view top:self.formTable.top];
+                [self getData];
+            }];
+        }
+        self.isFromRefresh = NO;
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -69,6 +113,9 @@
 }
 
 - (void)initForm {
+    if (self.listArray.count==0) {
+        [WTEmptyView showEmptyInView:self.view top:self.formTable.top image:[UIImage imageNamed:@"emptyImage"]];
+    }
     NSMutableArray *sectionArray = [NSMutableArray array];
     RETableViewSection *section0 = [RETableViewSection section];
     [section0 addItem:[WTEmptyItem initWithHeight:8]];

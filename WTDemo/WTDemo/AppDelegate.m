@@ -21,7 +21,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [super application:application didFinishLaunchingWithOptions:launchOptions];
-    
+    [[QLLoginInfo sharedInstance] readLoginInfoFromFile];
     [self initRoot];
     
     return YES;

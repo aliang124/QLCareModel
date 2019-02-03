@@ -53,7 +53,7 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    countLab.text = @"234";
+    countLab.text = [WTUtil strRelay:self.total];
     [countLab sizeToFit];
 }
 @end

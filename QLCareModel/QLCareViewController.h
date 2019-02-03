@@ -12,4 +12,7 @@
 
 @interface QLCareViewController : QLFormViewController
 @property (nonatomic,strong) QLCareBarView *barView;
+@property (nonatomic,strong) NSMutableArray *listArray;
+@property (nonatomic,assign) int pageIndex;
+@property (nonatomic,assign) int totalPage;
 @end
