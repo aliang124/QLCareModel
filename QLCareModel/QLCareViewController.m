@@ -69,16 +69,26 @@
         [self getData];
     }];
     [WTLoadingView1 showLoadingInView:self.view top:self.barView.top];
+    self.barView.hidden = YES;
     [self getData];
+    WTAddNotification(QL_LoginSuccess_CompletionHandler, @selector(getData));
 }
 
 - (void)getData {
+    if (![[QLLoginInfo sharedInstance] isLogin]) {
+        [WTLoadFailView showNoLoginView:self.view top:self.barView.top retryPress:^{
+            UIViewController *vc = [[CTMediator sharedInstance] performTarget:@"QLLoginModel" action:@"loginVC" params:nil shouldCacheTarget:NO];
+            [self.navigationController presentViewController:[[UINavigationController alloc] initWithRootViewController:vc] animated:YES completion:nil];
+        }];
+        return;
+    }
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     [dic setObject:[NSNumber numberWithInt:self.pageIndex] forKey:@"page"];
     [dic setObject:@"10" forKey:@"pageSize"];
     [QLCareNetWorkingUtil getFlowIndex:dic successHandler:^(id json) {
         [WTLoadingView1 hideAllLoadingForView:self.view];
         [self.formTable.mj_header endRefreshing];
+        self.barView.hidden = NO;
         self.barView.total = json[@"total"];
         [self.barView setNeedsLayout];
         
@@ -104,14 +114,6 @@
         }
         self.isFromRefresh = NO;
     }];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-//    if (![[QLLoginInfo sharedInstance] isLogin]) {
-//        UIViewController *vc = [[CTMediator sharedInstance] performTarget:@"QLLoginModel" action:@"loginVC" params:nil shouldCacheTarget:NO];
-//        [self.navigationController presentViewController:[[UINavigationController alloc] initWithRootViewController:vc] animated:YES completion:nil];
-//    }
 }
 
 - (void)initForm {

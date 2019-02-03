@@ -12,10 +12,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WTLoadFailView : UIView
 @property(nonatomic,copy) void  (^retryPress)(void);
-
+@property (nonatomic,assign) BOOL isNoLogin;
 // 便利方法
 + (void)showFailInView:(UIView *)view retryPress:(void (^)(void))retry;
 + (void)showFailInView:(UIView *)view top:(float)top retryPress:(void (^)(void))retry;
++ (void)showNoLoginView:(UIView *)view top:(float)top retryPress:(void (^)(void))retry;
 + (void)hideAllFailForView:(UIView *)view;
 
 @end
